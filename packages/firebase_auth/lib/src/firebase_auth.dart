@@ -351,6 +351,21 @@ class FirebaseAuth {
     await channel.invokeMethod('verifyPhoneNumber', params);
   }
 
+  Future<void> signInWithPhoneNumber({
+    @required String verificationId,
+    @required String smsCode,
+  }) async {
+    final Map<String, String> params = <String, String>{
+      'verificationId': verificationId,
+      'smsCode': smsCode,
+    };
+
+    // TODO(amirh): remove this on when the invokeMethod update makes it to stable Flutter.
+    // https://github.com/flutter/flutter/issues/26431
+    // ignore: strong_mode_implicit_dynamic_method
+    await channel.invokeMethod('signInWithPhoneNumber', params);
+  }
+
   /// Tries to sign in a user with a given Custom Token [token].
   ///
   /// If successful, it also signs the user in into the app and updates
